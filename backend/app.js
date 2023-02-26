@@ -1,3 +1,5 @@
+// app.js
+
 const path = require("path");
 const express = require("express");
 const app = express();
@@ -28,7 +30,12 @@ io.on("connect", (socket) => {
 
   socket.on("move", (data) => {
     charCtr.moveChar(socket.id, data.location);
-    console.log(1);
     io.emit("charListUpdate", charCtr.charList);
+  });
+
+  socket.on("updateKeyPress", (keyPress) => {
+    charCtr.updateKeyPress(socket.id, keyPress);
+    io.emit("charListUpdate", charCtr.charList);
+    console.log(charCtr.charList);
   });
 });

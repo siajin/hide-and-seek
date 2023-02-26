@@ -5,6 +5,12 @@ let Character = class {
       x: 0,
       y: 0,
     };
+    this.keyPress = {
+      up: 0,
+      down: 0,
+      right: 0,
+      left: 0,
+    };
   }
 };
 
@@ -29,9 +35,15 @@ const moveChar = (id, location) => {
   console.log(charList);
 };
 
+const updateKeyPress = (id, keyPress) => {
+  if (!keyPress) return;
+  charList.find((char) => char.id === id).keyPress = keyPress;
+};
+
 module.exports = {
   createChar,
   deleteChar,
   moveChar,
+  updateKeyPress,
   charList,
 };
